@@ -1,46 +1,43 @@
-<div align="center">
-  <h3 align="center">Bomberman: Re</h3>
+# Bomberman: Re
 
-  <div align="justify">
-    <p>
-      This is a Bomberman clone game developed in Java using the libGDX game framework. The game features a classic 2-player mode where players compete to bomb each other within a time limit of 3 minutes. Power-ups enhance gameplay by providing various abilities.
-    </p>
-  </div>
-</div>
+A two-player Bomberman clone in Java, built with libGDX and Box2D. Two players share one keyboard on a single arena, dropping bombs to break blocks, collect power-ups and blow each other up.
 
-## Features
-- Classic Bomberman gameplay mechanics
-- 2-player mode for local multiplayer
-- Time-limited matches (3 minutes)
-- Power-ups to enhance gameplay experience
+## How a match plays
 
-## Getting Started
-### Prerequisites
-Ensure you have Java and libGDX installed on your system. Visit [libGDX's official site](https://libgdx.com/) for installation instructions.
+- Each round runs on a 300 second clock. A round ends when a player dies or the clock runs out, and the arena resets for the next one.
+- The first player to win 3 rounds wins the match.
+- Breakable blocks can drop one of three power-ups: more bomb range, more bombs at once, or more speed.
+- In the last 60 seconds of a round both players jump to maximum stats.
 
-### Installation
-1. Clone the repository:
-2. Navigate to the project directory: `cd bomberman-clone`
-3. Build and run the project using Gradle or your preferred Java IDE.
+## Controls
 
-# Usage
-1. Launch the game.
-2. Choose the 2-player mode.
-3. Play against your opponent within the time limit.
-4. Use bombs strategically and collect power-ups to gain advantages.
+| | Move | Bomb |
+|---|---|---|
+| Player 1 | `W` `A` `S` `D` | `F` |
+| Player 2 | Arrow keys | `Enter` |
 
-## Built With
-* [![Java][Java]][Java-url]
-* [![libGDX][libGDX]][libGDX-url]
+## Running it
 
-[Java]: https://img.shields.io/badge/Java-007396?logo=java&logoColor=white
-[Java-url]: https://www.java.com/
-[libGDX]: https://img.shields.io/badge/libGDX-313131?logo=libGDX&logoColor=green
-[libGDX-url]: https://libgdx.com/
+You need a JDK. The Gradle wrapper (Gradle 7.5.1) pulls in libGDX 1.11.0, so there is nothing else to install.
+
+```
+git clone https://github.com/janrizmlibres/bomberman-clone.git
+cd bomberman-clone
+./gradlew desktop:run
+```
+
+On Windows use `gradlew.bat desktop:run`. The run task adds `-XstartOnFirstThread` on macOS for you.
+
+## Project layout
+
+- `core/` holds the game code, split into packages for actors, objects, effects and screens.
+- `desktop/` holds the LWJGL3 launcher.
+- `assets/` holds the sprites and audio, plus the Tiled map in `tilemaps/level1.tmx`.
+
+## Status
+
+Finished and no longer worked on. The font is loaded from a Windows-style path (`sprites\bm.ttf`), so it may fail to load on macOS and Linux until that is changed to a forward slash. The Box2D debug renderer is still drawn over the map.
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Contact
-- Janriz Mathew Libres - [libres.janriz@gmail.com](mailto:libres.janriz@gmail.com)
-- LinkedIn: [Profile](https://www.linkedin.com/in/janriz-mathew-libres-3a81bb228/)
+MIT. See [LICENSE](LICENSE).
